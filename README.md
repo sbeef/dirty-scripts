@@ -1,5 +1,5 @@
 # dirty scripts
-### A collections of python scripts I write to faciliate my GIS work in the dirt lab
+##### A collections of python scripts I write to faciliate my GIS work in the dirt lab
 
 ## samplr
 The big-baby script(s).  This is a script to manage my samples and associated information.  
