@@ -1,4 +1,4 @@
-import json
+import time, yaml
 
 class Coordinate:
     def __init__(self):
@@ -43,6 +43,7 @@ class SampleCollection: # a collection of samples to be treated similarly
     def __init__(self):
         self.name = None # the name of the collection
         #files
+        self.file_name = None
         self.elevation_file = None # the address of the elevation file that the samples pull from
         self.flowdir_file = None # Address of the flow direction file for the samples
         self.accumulation_file = None # Address of the flow accumulation file that the samples pull from
@@ -52,44 +53,21 @@ class SampleCollection: # a collection of samples to be treated similarly
     def add(self, sample):
         self.sample_list.append(sample)
 
+    def save(self):
+        if self.file_name == None:
+            self.file_name = "_".join([c for c in filename if c.isalpha() or c.isdigit()]).rstrip()
+        outfile = "%s.data" % self.file_name
+        output = open(outfile, 'w')
+        yaml.dump(self, output)
+        output.close()
+        archive_file = ".archive/%s_%s.data" % (self.file_name, time.strftime("%y.%m.%d-%H.%M.%S"))
+        archive = open(archive_file, 'w')
+        yaml.dump(self, archive)
+        archive.close()
 
-class SampleEncoder(json.JSONEncoder):
-    def default(self, o):
-        if isinstance(o, Coordinate):
-            return {'latitude'  : o.latitude,
-                    'longitude' : o.longitude}
-        elif isinstance(o, StatsNugget):
-            return {'mimimum' : o.minimum,
-                    'maximum' : o.maximum,
-                    'mean'    : o.mean}
 
-        elif isinstance(o, Sample):
-            return {'name'         : o.name,
-                    'location'     : json.dumps(o.elevation, cls=SampleEncoder, indent=4),
-                    'area'         : o.area,
-                    'basin'        : o.basin,
-                    'files'        : {'watershed'   : o.watershed,
-                                      'angle file'  : o.angle_file,
-                                      'harbin file' : o.harbin_file},
-                    'isotope data' : {'137Cs' : o.cs,
-                                      '210Pb' : o.pb},
-                    'statistics'   : {'elevation' : json.dumps(o.elevation, cls=SampleEncoder, indent=4),
-                                      'slope'     : json.dumps(o.slope, cls=SampleEncoder, indent=4),
-                                      'rain'      : json.dumps(o.rain, cls=SampleEncoder, indent=4),
-                                      'relief'    : json.dumps(o.relief, cls=SampleEncoder, indent=4),
-                                      'land use'  : {'% cultivated' : o.cultivated,
-                                                     '% artifical'  : o.artificial}},
-                    'flow snapped'          : o.flow_snapped,
-                    'counted'               : o.counted,
-                    'efficiency calculated' : o.efficiency_calculated,
-                    'tags'                  : o.tags}
-        elif isinstance(o, SampleCollection):
-            return {'name' : o.name,
-                    'files' : {'DEM' : o.elevation_file,
-                               'flow direction' : o.flowdir_file,
-                               'flow accumulation' : o.accumulation_file},
-                    'tags' : o.tags,
-                    'samples' : map(lambda i: json.dumps(i, cls=SampleEncoder, indent=4), o.sample_list)}
-        else:
-             return super(CustomEncoder, self).default(0)
-
+def load(file_name):
+    input_file = open(file_name, 'r')
+    sample_list = yaml.load(input_file)
+    input_file.close()
+    return sample_list
