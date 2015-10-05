@@ -1,4 +1,4 @@
-import time, yaml
+import time, yaml, os
 
 class Coordinate:
     def __init__(self):
@@ -43,6 +43,7 @@ class SampleCollection: # a collection of samples to be treated similarly
     def __init__(self):
         self.name = None # the name of the collection
         #files
+        self.folder = "" # the folder that contains the data file
         self.file_name = None
         self.elevation_file = None # the address of the elevation file that the samples pull from
         self.flowdir_file = None # Address of the flow direction file for the samples
@@ -57,11 +58,13 @@ class SampleCollection: # a collection of samples to be treated similarly
         if self.file_name == None:
             self.file_name = "_".join([c for c in filename if c.isalpha() or c.isdigit()]).rstrip()
         outfile = "%s.data" % self.file_name
-        output = open(outfile, 'w')
+        outpath = os.path.join(self.folder, outpath)
+        output = open(outpath, 'w')
         yaml.dump(self, output)
         output.close()
         archive_file = ".archive/%s_%s.data" % (self.file_name, time.strftime("%y.%m.%d-%H.%M.%S"))
-        archive = open(archive_file, 'w')
+        archive_path = os.path.join(self.folder, archive_file)
+        archive = open(archive_path, 'w')
         yaml.dump(self, archive)
         archive.close()
 
@@ -70,4 +73,5 @@ def load(file_name):
     input_file = open(file_name, 'r')
     sample_list = yaml.load(input_file)
     input_file.close()
+    sample_list.folder = os.path.split(file_name)[0]
     return sample_list

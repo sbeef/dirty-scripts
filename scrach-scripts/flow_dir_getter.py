@@ -36,20 +36,24 @@ def extract_tile(file_name):
     zfile.extractall(TILE_DIR)
     zfile.close()
 
-while cur_lat <= max_lat:
-    while cur_long <= min_long:
-        folder_name = lat_long_to_filename(cur_lat, cur_long)
-        zip_fname = "%.zip" % folder_name
-        if not os.path.exists(fname):
-            download_file(URL_PREFIX, fname)
-        elif verbose:
-            print "%s already exists, skipping download" % fname
-        if not os.path.isdir(folder_name):
-            extract_tile(fname)
-        elif verbose:
-            print "%s already extracted to %s" % (zip_fname, folder_name)
-
+def get_tiles():
+    while cur_lat <= max_lat:
+        while cur_long <= min_long:
+            folder_name = lat_long_to_filename(cur_lat, cur_long)
+            zip_fname = "%.zip" % folder_name
+            if not os.path.exists(fname):
+                download_file(URL_PREFIX, fname)
+            elif verbose:
+                print "%s already exists, skipping download" % fname
+            if not os.path.isdir(folder_name):
+                extract_tile(fname)
+            elif verbose:
+                print "%s already extracted to %s" % (zip_fname, folder_name)
         cur_long += LONG_INC
     cur_lat += LAT_INC
 
+def generate_tile_file_list(tile_folder):
+
+
+def mosaic_tiles(tile_folder)
 
