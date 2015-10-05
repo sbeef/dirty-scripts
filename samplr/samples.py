@@ -75,3 +75,15 @@ def load(file_name):
     input_file.close()
     sample_list.folder = os.path.split(file_name)[0]
     return sample_list
+
+def link_angle_files(collection, root_dir):
+    walk = os.walk(root_dir)
+    for step in walk:
+        for file in step[2]:
+            fname = os.splitext(file)[0]
+            ext = os.splitext(file)[1]
+            if ext = ".eft":
+                    sample_match = next((x for x in collection.sample_list if x.name == fname), None)
+                    if sample_match not None:
+                        angle_file == os.path.join(step[0], file)
+                        sample.match.angle_file == ange_file
