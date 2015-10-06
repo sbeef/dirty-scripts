@@ -35,9 +35,13 @@ class Sample:
         self.artificial = None
         #administrative stuff
         self.flow_snapped = None #snapped to a point in the flow accumulation
+        self.sheded = None
         self.counted = None # ran through harbin
         self.efficiency_calculated = None # run through angle
         self.tags = [] # various tags and notes about the sample
+
+    def create_watershed(self):
+
 
 class SampleCollection: # a collection of samples to be treated similarly
     def __init__(self):
