@@ -121,22 +121,39 @@ def load(file_name):
     sample_list.containing_folder = os.path.split(file_name)[0]
     return sample_list
 
-# takes in a sample collection and a directory to search and finds all the .eft files and copies them over
-def link_angle_files(collection, root_dir, copy=True):
+def sync_file(sample, path, fname, field, copy):
+    source_file = os.path.join(path, fname)
+    if copy:
+        file_backup = os.path.join(field[1], fname)
+        shutil.copyfile(source_file, file_backup)
+        source_file = file_backup
+    if field[0] == "angle":
+        sample.angle_file == source_file
+        sample.efficiency_calculated == True
+    elif field[0] == "harbin":
+        sample.harbin_file == source_file
+        sample.counted == True
+    #else throw error?
+
+# takes in a sample collection and a directory to search and finds all the files of a certain extension and copies them over
+def link_files(collection, root_dir, field, copy):
     collection.setup_angle_folder()
     walk = os.walk(root_dir)
     for step in walk:
         for file in step[2]:
             fname = os.splitext(file)[0]
             ext = os.splitext(file)[1]
-            if ext = ".eft":
+            if ext = field[3]:
                     sample_match = next((x for x in collection.sample_list if x.name == fname), None)
                     if sample_match not None:
-                        angle_file == os.path.join(step[0], file)
-                        if copy = True:
-                            angle_backup = os.path.join(collection.angle_folder, file)
-                            shutil.copyfile(angle_file, angle_backup)
-                            angle_file = angle_backup
-                        sample_match.angle_file == angle_file
-                        sample_match.efficiency_calculated == True
+                        sync_file(sample_match, step[0], file, field, copy)
 
+def link_angle_files(collection, root_dir, copy=True):
+    collection.setup_angle_folder()
+    field = ("angle", collection.angle_folder, ".eft")
+    link_files(collection, root_dir, field, copy)
+
+def link_harbin_files(collection, root_dir, copy=True):
+    collection.setup_harbin_folder()
+    field = ("harbin", collection.harbin_folder, ".RPT")
+    link_files(collection, root_dir, field, copy)
