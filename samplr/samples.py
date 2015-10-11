@@ -17,6 +17,7 @@ class Sample:
         self.location = Coordinate() #a coordinate object
         self.area = None # the upstream area of the sample
         self.basin = None # the name of the river basin
+        self.spatial_reference = None
         #files
         self.watershed = None # a string representing the adress of the shapefile of the watershed
         self.angle_file = None # a string representing the adress of the output file from angle
@@ -39,9 +40,22 @@ class Sample:
         self.counted = None # ran through harbin
         self.efficiency_calculated = None # run through angle
         self.tags = [] # various tags and notes about the sample
+    def load_prj_file(prj_file):
+        self.spatial_reference = arcpy.SpatialReference(prj_file)
 
-    def create_watershed(self):
-
+    def create_watershed(self, flow_dir, shp_dir):
+        if not self.flow_snapped:
+            print "this point has not yet been snapped to flow direction"
+            return None
+        point_info = arcpy.point(self.location.longitude, self.location.latitude)
+        point = arcpy.PointGeometry(point_info, self.spatial_reference)
+        arcpy.CheckOutExtension("Spatial")
+        watershed_raster = arcpy.sa.Watershed(flow_dir, point)
+        shp_name = self.name.replace(" ", "_")
+        shp_path = os.path.join(shp_dir, shp_name)
+        arcpy.RasterToPolygon_conversion(watershed_raster, shp_path)
+        self.watershed = shp_path
+        return shp_path
 
 class SampleCollection: # a collection of samples to be treated similarly
     def __init__(self):
@@ -105,7 +119,7 @@ class SampleCollection: # a collection of samples to be treated similarly
 
     def save(self):
         if self.file_name == None:
-            self.file_name = "_".join([c for c in filename if c.isalpha() or c.isdigit()]).rstrip()
+            self.file_name = name.replace(" ", "_")
         outfile = "%s.data" % self.file_name
         outpath = os.path.join(self.containing_folder, outpath)
         output = open(outpath, 'w')
