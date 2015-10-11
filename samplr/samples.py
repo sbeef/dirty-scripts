@@ -1,4 +1,4 @@
-import time, yaml, os
+import time, yaml, os, arcpy
 
 class Coordinate:
     def __init__(self):
