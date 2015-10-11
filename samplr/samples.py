@@ -76,7 +76,7 @@ class SampleCollection: # a collection of samples to be treated similarly
 
     # this function just returns the sample list, so that you can iterate
     def __iter__(self):
-        return self.sample_list
+        return iter(self.sample_list)
 
     def add(self, sample):
         self.sample_list.append(sample)
@@ -161,9 +161,9 @@ def link_files(collection, root_dir, field, copy):
         for file in step[2]:
             fname = os.splitext(file)[0]
             ext = os.splitext(file)[1]
-            if ext = field[3]:
+            if ext == field[3]:
                     sample_match = next((x for x in collection.sample_list if x.name == fname), None)
-                    if sample_match not None:
+                    if sample_match is not None:
                         sync_file(sample_match, step[0], file, field, copy)
 
 def link_angle_files(collection, root_dir, copy=True):
