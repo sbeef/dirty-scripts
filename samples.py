@@ -1,4 +1,7 @@
-import time, yaml, os, arcpy
+import time, yaml, os, sys
+
+if sys.platform != "cygwin":
+    import arcpy
 
 class Coordinate:
     def __init__(self):
@@ -119,15 +122,15 @@ class SampleCollection: # a collection of samples to be treated similarly
 
     def save(self):
         if self.file_name == None:
-            self.file_name = name.replace(" ", "_")
+            self.file_name = self.name.replace(" ", "_")
         outfile = "%s.data" % self.file_name
-        outpath = os.path.join(self.containing_folder, outpath)
+        outpath = os.path.join(self.containing_folder, outfile)
         output = open(outpath, 'w')
         yaml.dump(self, output)
         output.close()
         self.setup_archive()
         archive_file = "%s_%s.data" % (self.file_name, time.strftime("%y.%m.%d-%H.%M.%S"))
-        archive_path = os.path.join(self.archive_file, archive_file)
+        archive_path = os.path.join(self.containing_folder, self.archive_folder, archive_file)
         archive = open(archive_path, 'w')
         yaml.dump(self, archive)
         archive.close()
@@ -175,3 +178,13 @@ def link_harbin_files(collection, root_dir, copy=True):
     collection.setup_harbin_folder()
     field = ("harbin", collection.harbin_folder, ".RPT")
     link_files(collection, root_dir, field, copy)
+
+
+def sample_to_PointGeometry(sample):
+    pt = arcpy.Point(sample.longitude, sample.latitude)
+    return arcpy.PointGeometry(pt)
+
+
+def create_pointfile_from_list(sample_list, outfile):
+    point_geoms = [sample_to_PointGeometry(sample) for sample in sample_list]
+    arcpyCopyFeatures+management(point_geoms, outfile)
