@@ -61,6 +61,47 @@ class Sample:
         self.sheded = True
         return shp_path
 
+    def get_statistics(self, raster_file, output=None):
+    if not self.sheded:
+        print "Cannot get statistics, no watershed exists"
+        return None
+    # load raster as a raster object
+    raster = arcpy.Raster(raster_file)
+    if output is None:
+        output = "in_memory/clipped"
+    # clip raster to watershed
+    clipped = arcpy.Raster(arcpy.Clip_management(raster, out_raster=output, in_template_dataset=self.watershed, clipping_geometry="ClippingGeometry")
+    # extract statistics
+    stats = StatsNugget()
+    stats.maximum = clipped.maximum
+    stats.minimum = clipped.minimum
+    stats.mean = clipped.mean
+    return stats
+
+    def get_stats(self, attribute, raster):
+        if attribute.upper() == "ELEVATION":
+            self.elevation = get_statistics(self, raster)
+        elif attribute.upper() == "SLOPE":
+            self.slope = get_statistics(self, raster)
+        elif attribute.upper() == "RAIN":
+            self.rain = get_statistics(self, raster)
+        elif attribute.upper() == "RELIEF":
+            self.relief = get_statistics(self, raster)
+        else:
+            print "sorry, no attribute called %s" % attribute
+
+    def set_elevation(self, raster):
+        self.get_stats("ELEVATIION", raster)
+
+    def set_slope(self, raster):
+        self.get_stats("SLOPE", raster)
+
+    def set_rain(self, raster):
+        self.get_stats("RAIN", raster)
+
+    def set_relief(self, raster):
+        self.get_stats("RELIEF", raster)
+
 class SampleCollection: # a collection of samples to be treated similarly
     def __init__(self):
         self.name = None # the name of the collection
@@ -190,7 +231,4 @@ def create_pointfile_from_list(sample_list, outfile):
     point_geoms = [sample_to_PointGeometry(sample) for sample in sample_list]
     arcpyCopyFeatures+management(point_geoms, outfile)
 
-def get_statistics(sample, raster):
-    if not sample.sheded:
-        print "Cannot get statistics, no watershed exists"
-        return None
+
