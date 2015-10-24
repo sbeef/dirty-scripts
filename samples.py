@@ -62,36 +62,48 @@ class Sample:
         return shp_path
 
     def get_statistics(self, raster_file, output=None):
-    if not self.sheded:
-        print "Cannot get statistics, no watershed exists"
-        return None
-    # load raster as a raster object
-    raster = arcpy.Raster(raster_file)
-    if output is None:
-        output = "in_memory/clipped"
-    # clip raster to watershed
-    clipped = arcpy.Raster(arcpy.Clip_management(raster, out_raster=output, in_template_dataset=self.watershed, clipping_geometry="ClippingGeometry")
-    # extract statistics
-    stats = StatsNugget()
-    stats.maximum = clipped.maximum
-    stats.minimum = clipped.minimum
-    stats.mean = clipped.mean
-    return stats
+        if not self.sheded:
+            print "Cannot get statistics, no watershed exists"
+            return None
+        # load raster as a raster object
+        raster = arcpy.Raster(raster_file)
+        if output is None:
+            outpath = "in_memory/clipped"
+        else:
+            outpath = output
+        # clip raster to watershed
+        clipped = arcpy.Raster(arcpy.Clip_management(raster, out_raster=outpath, in_template_dataset=self.watershed, clipping_geometry="ClippingGeometry"))
+        # extract statistics
+        stats = StatsNugget()
+        stats.maximum = clipped.maximum
+        stats.minimum = clipped.minimum
+        stats.mean = clipped.mean
+        if output is None:
+            arcpy.Delete_management(outpath)
+        return stats
 
     def get_stats(self, attribute, raster):
         if attribute.upper() == "ELEVATION":
-            self.elevation = get_statistics(self, raster)
+            stats = self.get_statistics(raster)
+            if stats is not None:
+                self.elevation = stats
         elif attribute.upper() == "SLOPE":
-            self.slope = get_statistics(self, raster)
+            stats = self.get_statistics(raster)
+            if stats is not None:
+                self.slope = stats
         elif attribute.upper() == "RAIN":
-            self.rain = get_statistics(self, raster)
+            stats = self.get_statistics(raster)
+            if stats is not None:
+                self.rain = stats
         elif attribute.upper() == "RELIEF":
-            self.relief = get_statistics(self, raster)
+            stats = self.get_statistics(raster)
+            if stats is not None:
+                self.relief = stats
         else:
             print "sorry, no attribute called %s" % attribute
 
     def set_elevation(self, raster):
-        self.get_stats("ELEVATIION", raster)
+        self.get_stats("ELEVATION", raster)
 
     def set_slope(self, raster):
         self.get_stats("SLOPE", raster)
