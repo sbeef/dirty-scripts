@@ -1,0 +1,14 @@
+!!python/object:samples.SampleCollection
+accumulation_file: null
+angle_folder: gsa_samples/.auxiliary/angle
+archive_folder: gsa_samples/.archive
+aux_folder: gsa_samples/.auxiliary
+containing_folder: gsa_samples
+elevation_file: null
+file_name: GSA_Samples
+flowdir_file: null
+gis_folder: gsa_samples/.auxiliary/gis
+harbin_folder: gsa_samples/.auxiliary/harbin
+name: GSA Samples
+sample_list: []
+tags: []

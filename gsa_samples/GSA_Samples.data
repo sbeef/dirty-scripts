@@ -1,0 +1,432 @@
+!!python/object:samples.SampleCollection
+accumulation_file: null
+angle_folder: gsa_samples/.auxiliary/angle
+archive_folder: gsa_samples/.archive
+aux_folder: gsa_samples/.auxiliary
+containing_folder: gsa_samples
+elevation_file: null
+file_name: GSA_Samples
+flowdir_file: null
+gis_folder: gsa_samples/.auxiliary/gis
+harbin_folder: gsa_samples/.auxiliary/harbin
+name: GSA Samples
+sample_list:
+- !!python/object:samples.Sample
+  angle_file: null
+  area: null
+  artificial: null
+  basin: null
+  counted: null
+  cs: null
+  cultivated: null
+  efficiency_calculated: null
+  elevation: !!python/object:samples.StatsNugget {maximum: null, mean: null, minimum: null}
+  flow_snapped: null
+  harbin_file: null
+  location: !!python/object:samples.Coordinate {latitude: '23.693801480099999', longitude: '100.817857281000000'}
+  name: CH-115
+  pb: null
+  rain: !!python/object:samples.StatsNugget {maximum: null, mean: null, minimum: null}
+  relief: !!python/object:samples.StatsNugget {maximum: null, mean: null, minimum: null}
+  sheded: true
+  slope: !!python/object:samples.StatsNugget {maximum: null, mean: null, minimum: null}
+  spatial_reference: null
+  tags: []
+  watershed: watersheds/CH-115.shp
+- !!python/object:samples.Sample
+  angle_file: null
+  area: null
+  artificial: null
+  basin: null
+  counted: null
+  cs: null
+  cultivated: null
+  efficiency_calculated: null
+  elevation: !!python/object:samples.StatsNugget {maximum: null, mean: null, minimum: null}
+  flow_snapped: null
+  harbin_file: null
+  location: !!python/object:samples.Coordinate {latitude: '22.969165133899999', longitude: '104.817886970999990'}
+  name: CH-101
+  pb: null
+  rain: !!python/object:samples.StatsNugget {maximum: null, mean: null, minimum: null}
+  relief: !!python/object:samples.StatsNugget {maximum: null, mean: null, minimum: null}
+  sheded: true
+  slope: !!python/object:samples.StatsNugget {maximum: null, mean: null, minimum: null}
+  spatial_reference: null
+  tags: []
+  watershed: watersheds/CH-101.shp
+- !!python/object:samples.Sample
+  angle_file: null
+  area: null
+  artificial: null
+  basin: null
+  counted: null
+  cs: null
+  cultivated: null
+  efficiency_calculated: null
+  elevation: !!python/object:samples.StatsNugget {maximum: null, mean: null, minimum: null}
+  flow_snapped: null
+  harbin_file: null
+  location: !!python/object:samples.Coordinate {latitude: '23.133643860900001', longitude: '104.507278088000010'}
+  name: CH-103
+  pb: null
+  rain: !!python/object:samples.StatsNugget {maximum: null, mean: null, minimum: null}
+  relief: !!python/object:samples.StatsNugget {maximum: null, mean: null, minimum: null}
+  sheded: true
+  slope: !!python/object:samples.StatsNugget {maximum: null, mean: null, minimum: null}
+  spatial_reference: null
+  tags: []
+  watershed: watersheds/CH-103.shp
+- !!python/object:samples.Sample
+  angle_file: null
+  area: null
+  artificial: null
+  basin: null
+  counted: null
+  cs: null
+  cultivated: null
+  efficiency_calculated: null
+  elevation: !!python/object:samples.StatsNugget {maximum: null, mean: null, minimum: null}
+  flow_snapped: null
+  harbin_file: null
+  location: !!python/object:samples.Coordinate {latitude: '23.283865216399999', longitude: '103.723878622000000'}
+  name: CH-105
+  pb: null
+  rain: !!python/object:samples.StatsNugget {maximum: null, mean: null, minimum: null}
+  relief: !!python/object:samples.StatsNugget {maximum: null, mean: null, minimum: null}
+  sheded: true
+  slope: !!python/object:samples.StatsNugget {maximum: null, mean: null, minimum: null}
+  spatial_reference: null
+  tags: []
+  watershed: watersheds/CH-105.shp
+- !!python/object:samples.Sample
+  angle_file: null
+  area: null
+  artificial: null
+  basin: null
+  counted: null
+  cs: null
+  cultivated: null
+  efficiency_calculated: null
+  elevation: !!python/object:samples.StatsNugget {maximum: null, mean: null, minimum: null}
+  flow_snapped: null
+  harbin_file: null
+  location: !!python/object:samples.Coordinate {latitude: '22.852165143899999', longitude: '103.579668552000000'}
+  name: CH-107
+  pb: null
+  rain: !!python/object:samples.StatsNugget {maximum: null, mean: null, minimum: null}
+  relief: !!python/object:samples.StatsNugget {maximum: null, mean: null, minimum: null}
+  sheded: true
+  slope: !!python/object:samples.StatsNugget {maximum: null, mean: null, minimum: null}
+  spatial_reference: null
+  tags: []
+  watershed: watersheds/CH-107.shp
+- !!python/object:samples.Sample
+  angle_file: null
+  area: null
+  artificial: null
+  basin: null
+  counted: null
+  cs: null
+  cultivated: null
+  efficiency_calculated: null
+  elevation: !!python/object:samples.StatsNugget {maximum: null, mean: null, minimum: null}
+  flow_snapped: null
+  harbin_file: null
+  location: !!python/object:samples.Coordinate {latitude: '23.547234586500000', longitude: '102.073074707999990'}
+  name: CH-109
+  pb: null
+  rain: !!python/object:samples.StatsNugget {maximum: null, mean: null, minimum: null}
+  relief: !!python/object:samples.StatsNugget {maximum: null, mean: null, minimum: null}
+  sheded: true
+  slope: !!python/object:samples.StatsNugget {maximum: null, mean: null, minimum: null}
+  spatial_reference: null
+  tags: []
+  watershed: watersheds/CH-109.shp
+- !!python/object:samples.Sample
+  angle_file: null
+  area: null
+  artificial: null
+  basin: null
+  counted: null
+  cs: null
+  cultivated: null
+  efficiency_calculated: null
+  elevation: !!python/object:samples.StatsNugget {maximum: null, mean: null, minimum: null}
+  flow_snapped: null
+  harbin_file: null
+  location: !!python/object:samples.Coordinate {latitude: '21.951876410299999', longitude: '100.421101495000000'}
+  name: CH-127
+  pb: null
+  rain: !!python/object:samples.StatsNugget {maximum: null, mean: null, minimum: null}
+  relief: !!python/object:samples.StatsNugget {maximum: null, mean: null, minimum: null}
+  sheded: true
+  slope: !!python/object:samples.StatsNugget {maximum: null, mean: null, minimum: null}
+  spatial_reference: null
+  tags: []
+  watershed: watersheds/CH-127.shp
+- !!python/object:samples.Sample
+  angle_file: null
+  area: null
+  artificial: null
+  basin: null
+  counted: null
+  cs: null
+  cultivated: null
+  efficiency_calculated: null
+  elevation: !!python/object:samples.StatsNugget {maximum: null, mean: null, minimum: null}
+  flow_snapped: null
+  harbin_file: null
+  location: !!python/object:samples.Coordinate {latitude: '23.556697565800000', longitude: '100.710194333000000'}
+  name: CH-117
+  pb: null
+  rain: !!python/object:samples.StatsNugget {maximum: null, mean: null, minimum: null}
+  relief: !!python/object:samples.StatsNugget {maximum: null, mean: null, minimum: null}
+  sheded: true
+  slope: !!python/object:samples.StatsNugget {maximum: null, mean: null, minimum: null}
+  spatial_reference: null
+  tags: []
+  watershed: watersheds/CH-117.shp
+- !!python/object:samples.Sample
+  angle_file: null
+  area: null
+  artificial: null
+  basin: null
+  counted: null
+  cs: null
+  cultivated: null
+  efficiency_calculated: null
+  elevation: !!python/object:samples.StatsNugget {maximum: null, mean: null, minimum: null}
+  flow_snapped: null
+  harbin_file: null
+  location: !!python/object:samples.Coordinate {latitude: '25.417621471400000', longitude: '100.006930682999990'}
+  name: CH-155
+  pb: null
+  rain: !!python/object:samples.StatsNugget {maximum: null, mean: null, minimum: null}
+  relief: !!python/object:samples.StatsNugget {maximum: null, mean: null, minimum: null}
+  sheded: true
+  slope: !!python/object:samples.StatsNugget {maximum: null, mean: null, minimum: null}
+  spatial_reference: null
+  tags: []
+  watershed: watersheds/CH-155.shp
+- !!python/object:samples.Sample
+  angle_file: null
+  area: null
+  artificial: null
+  basin: null
+  counted: null
+  cs: null
+  cultivated: null
+  efficiency_calculated: null
+  elevation: !!python/object:samples.StatsNugget {maximum: null, mean: null, minimum: null}
+  flow_snapped: null
+  harbin_file: null
+  location: !!python/object:samples.Coordinate {latitude: '24.433865871700000', longitude: '100.117549896000000'}
+  name: CH-157
+  pb: null
+  rain: !!python/object:samples.StatsNugget {maximum: null, mean: null, minimum: null}
+  relief: !!python/object:samples.StatsNugget {maximum: null, mean: null, minimum: null}
+  sheded: null
+  slope: !!python/object:samples.StatsNugget {maximum: null, mean: null, minimum: null}
+  spatial_reference: null
+  tags: []
+  watershed: null
+- !!python/object:samples.Sample
+  angle_file: null
+  area: null
+  artificial: null
+  basin: null
+  counted: null
+  cs: null
+  cultivated: null
+  efficiency_calculated: null
+  elevation: !!python/object:samples.StatsNugget {maximum: null, mean: null, minimum: null}
+  flow_snapped: null
+  harbin_file: null
+  location: !!python/object:samples.Coordinate {latitude: '23.544823098799998', longitude: '102.085768935000000'}
+  name: CH-111
+  pb: null
+  rain: !!python/object:samples.StatsNugget {maximum: null, mean: null, minimum: null}
+  relief: !!python/object:samples.StatsNugget {maximum: null, mean: null, minimum: null}
+  sheded: true
+  slope: !!python/object:samples.StatsNugget {maximum: null, mean: null, minimum: null}
+  spatial_reference: null
+  tags: []
+  watershed: watersheds/CH-111.shp
+- !!python/object:samples.Sample
+  angle_file: null
+  area: null
+  artificial: null
+  basin: null
+  counted: null
+  cs: null
+  cultivated: null
+  efficiency_calculated: null
+  elevation: !!python/object:samples.StatsNugget {maximum: null, mean: null, minimum: null}
+  flow_snapped: null
+  harbin_file: null
+  location: !!python/object:samples.Coordinate {latitude: '23.351690854099999', longitude: '101.501619508000000'}
+  name: CH-113
+  pb: null
+  rain: !!python/object:samples.StatsNugget {maximum: null, mean: null, minimum: null}
+  relief: !!python/object:samples.StatsNugget {maximum: null, mean: null, minimum: null}
+  sheded: true
+  slope: !!python/object:samples.StatsNugget {maximum: null, mean: null, minimum: null}
+  spatial_reference: null
+  tags: []
+  watershed: watersheds/CH-113.shp
+- !!python/object:samples.Sample
+  angle_file: null
+  area: null
+  artificial: null
+  basin: null
+  counted: null
+  cs: null
+  cultivated: null
+  efficiency_calculated: null
+  elevation: !!python/object:samples.StatsNugget {maximum: null, mean: null, minimum: null}
+  flow_snapped: null
+  harbin_file: null
+  location: !!python/object:samples.Coordinate {latitude: '22.183872806499998', longitude: '99.222160777799999'}
+  name: CH-129
+  pb: null
+  rain: !!python/object:samples.StatsNugget {maximum: null, mean: null, minimum: null}
+  relief: !!python/object:samples.StatsNugget {maximum: null, mean: null, minimum: null}
+  sheded: true
+  slope: !!python/object:samples.StatsNugget {maximum: null, mean: null, minimum: null}
+  spatial_reference: null
+  tags: []
+  watershed: watersheds/CH-129.shp
+- !!python/object:samples.Sample
+  angle_file: null
+  area: null
+  artificial: null
+  basin: null
+  counted: null
+  cs: null
+  cultivated: null
+  efficiency_calculated: null
+  elevation: !!python/object:samples.StatsNugget {maximum: null, mean: null, minimum: null}
+  flow_snapped: null
+  harbin_file: null
+  location: !!python/object:samples.Coordinate {latitude: '22.337220173500000', longitude: '99.574969223200000'}
+  name: CH-131
+  pb: null
+  rain: !!python/object:samples.StatsNugget {maximum: null, mean: null, minimum: null}
+  relief: !!python/object:samples.StatsNugget {maximum: null, mean: null, minimum: null}
+  sheded: true
+  slope: !!python/object:samples.StatsNugget {maximum: null, mean: null, minimum: null}
+  spatial_reference: null
+  tags: []
+  watershed: watersheds/CH-131.shp
+- !!python/object:samples.Sample
+  angle_file: null
+  area: null
+  artificial: null
+  basin: null
+  counted: null
+  cs: null
+  cultivated: null
+  efficiency_calculated: null
+  elevation: !!python/object:samples.StatsNugget {maximum: null, mean: null, minimum: null}
+  flow_snapped: null
+  harbin_file: null
+  location: !!python/object:samples.Coordinate {latitude: '23.365246490499999', longitude: '99.446900029000005'}
+  name: CH-133
+  pb: null
+  rain: !!python/object:samples.StatsNugget {maximum: null, mean: null, minimum: null}
+  relief: !!python/object:samples.StatsNugget {maximum: null, mean: null, minimum: null}
+  sheded: true
+  slope: !!python/object:samples.StatsNugget {maximum: null, mean: null, minimum: null}
+  spatial_reference: null
+  tags: []
+  watershed: watersheds/CH-133.shp
+- !!python/object:samples.Sample
+  angle_file: null
+  area: null
+  artificial: null
+  basin: null
+  counted: null
+  cs: null
+  cultivated: null
+  efficiency_calculated: null
+  elevation: !!python/object:samples.StatsNugget {maximum: null, mean: null, minimum: null}
+  flow_snapped: null
+  harbin_file: null
+  location: !!python/object:samples.Coordinate {latitude: '23.530940051200002', longitude: '98.987846374499995'}
+  name: CH-139
+  pb: null
+  rain: !!python/object:samples.StatsNugget {maximum: null, mean: null, minimum: null}
+  relief: !!python/object:samples.StatsNugget {maximum: null, mean: null, minimum: null}
+  sheded: null
+  slope: !!python/object:samples.StatsNugget {maximum: null, mean: null, minimum: null}
+  spatial_reference: null
+  tags: []
+  watershed: null
+- !!python/object:samples.Sample
+  angle_file: null
+  area: null
+  artificial: null
+  basin: null
+  counted: null
+  cs: null
+  cultivated: null
+  efficiency_calculated: null
+  elevation: !!python/object:samples.StatsNugget {maximum: null, mean: null, minimum: null}
+  flow_snapped: null
+  harbin_file: null
+  location: !!python/object:samples.Coordinate {latitude: '24.051911862800001', longitude: '97.975614736899999'}
+  name: CH-141
+  pb: null
+  rain: !!python/object:samples.StatsNugget {maximum: null, mean: null, minimum: null}
+  relief: !!python/object:samples.StatsNugget {maximum: null, mean: null, minimum: null}
+  sheded: true
+  slope: !!python/object:samples.StatsNugget {maximum: null, mean: null, minimum: null}
+  spatial_reference: null
+  tags: []
+  watershed: watersheds/CH-141.shp
+- !!python/object:samples.Sample
+  angle_file: null
+  area: null
+  artificial: null
+  basin: null
+  counted: null
+  cs: null
+  cultivated: null
+  efficiency_calculated: null
+  elevation: !!python/object:samples.StatsNugget {maximum: null, mean: null, minimum: null}
+  flow_snapped: null
+  harbin_file: null
+  location: !!python/object:samples.Coordinate {latitude: '24.487369524799998', longitude: '97.726185971099994'}
+  name: CH-143
+  pb: null
+  rain: !!python/object:samples.StatsNugget {maximum: null, mean: null, minimum: null}
+  relief: !!python/object:samples.StatsNugget {maximum: null, mean: null, minimum: null}
+  sheded: true
+  slope: !!python/object:samples.StatsNugget {maximum: null, mean: null, minimum: null}
+  spatial_reference: null
+  tags: []
+  watershed: watersheds/CH-143.shp
+- !!python/object:samples.Sample
+  angle_file: null
+  area: null
+  artificial: null
+  basin: null
+  counted: null
+  cs: null
+  cultivated: null
+  efficiency_calculated: null
+  elevation: !!python/object:samples.StatsNugget {maximum: null, mean: null, minimum: null}
+  flow_snapped: null
+  harbin_file: null
+  location: !!python/object:samples.Coordinate {latitude: '23.677143798600000', longitude: '99.237052152299995'}
+  name: CH-135
+  pb: null
+  rain: !!python/object:samples.StatsNugget {maximum: null, mean: null, minimum: null}
+  relief: !!python/object:samples.StatsNugget {maximum: null, mean: null, minimum: null}
+  sheded: true
+  slope: !!python/object:samples.StatsNugget {maximum: null, mean: null, minimum: null}
+  spatial_reference: null
+  tags: []
+  watershed: watersheds/CH-135.shp
+tags: []

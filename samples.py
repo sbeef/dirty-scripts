@@ -58,6 +58,7 @@ class Sample:
         shp_path = os.path.join(shp_dir, shp_name)
         arcpy.RasterToPolygon_conversion(watershed_raster, shp_path)
         self.watershed = shp_path
+        self.sheded = True
         return shp_path
 
 class SampleCollection: # a collection of samples to be treated similarly
@@ -130,7 +131,7 @@ class SampleCollection: # a collection of samples to be treated similarly
         output.close()
         self.setup_archive()
         archive_file = "%s_%s.data" % (self.file_name, time.strftime("%y.%m.%d-%H.%M.%S"))
-        archive_path = os.path.join(self.containing_folder, self.archive_folder, archive_file)
+        archive_path = os.path.join(self.archive_folder, archive_file)
         archive = open(archive_path, 'w')
         yaml.dump(self, archive)
         archive.close()
@@ -188,3 +189,8 @@ def sample_to_PointGeometry(sample):
 def create_pointfile_from_list(sample_list, outfile):
     point_geoms = [sample_to_PointGeometry(sample) for sample in sample_list]
     arcpyCopyFeatures+management(point_geoms, outfile)
+
+def get_statistics(sample, raster):
+    if not sample.sheded:
+        print "Cannot get statistics, no watershed exists"
+        return None
