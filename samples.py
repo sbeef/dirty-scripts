@@ -243,4 +243,22 @@ def create_pointfile_from_list(sample_list, outfile):
     point_geoms = [sample_to_PointGeometry(sample) for sample in sample_list]
     arcpyCopyFeatures+management(point_geoms, outfile)
 
-
+def get_class_area(raster, cids, clip, nodata=255):
+    temp_output = "clipped"
+    clipr = arcpy.Clip_management(raster, out_raster=temp_output, in_template_dataset=clip, clipping_geometry="ClippingGeometry")
+    c = arcpy.Raster(clipr)
+    #convert raster to array
+    a = arcpy.RasterToNumPyArray(c)
+    # get size of array
+    sel = (a != nodata)
+    total = len(a[sel])
+    output = {}
+    # sum number of elements equal to a certain value
+    for value in cids:
+        sel = (a == value)
+        count = len(a[sel])
+        perc = float(count)/float(total)
+        output[value] = perc
+    # return sum/size
+    arcpy.Delete_management(temp_output)
+    return output
