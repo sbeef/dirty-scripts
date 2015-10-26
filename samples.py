@@ -243,15 +243,19 @@ def create_pointfile_from_list(sample_list, outfile):
     point_geoms = [sample_to_PointGeometry(sample) for sample in sample_list]
     arcpyCopyFeatures+management(point_geoms, outfile)
 
-def get_class_area(raster, cids, clip, nodata=255):
-    temp_output = "clipped"
-    clipr = arcpy.Clip_management(raster, out_raster=temp_output, in_template_dataset=clip, clipping_geometry="ClippingGeometry")
+#temp_output needs to be the default geodatabase
+# NOT GENERIC, SPECIFIC TO GLC!!
+def get_class_area(raster, cids, clip, nodata=255, clean=True):
+    temp_output = "/Users/geomorph/Documents/ArcGIS/Default.gdb/clipped"
+    clipr = arcpy.Clip_management(raster, out_raster=temp_output, in_template_dataset=clip, nodata_value = nodata, clipping_geometry="ClippingGeometry")
     c = arcpy.Raster(clipr)
     #convert raster to array
     a = arcpy.RasterToNumPyArray(c)
     # get size of array
-    sel = (a != nodata)
-    total = len(a[sel])
+    sel = (a >= 1)
+    tp = a[sel]
+    sel = (tp <= 10)
+    total = len(tp[sel])
     output = {}
     # sum number of elements equal to a certain value
     for value in cids:
@@ -260,5 +264,6 @@ def get_class_area(raster, cids, clip, nodata=255):
         perc = float(count)/float(total)
         output[value] = perc
     # return sum/size
-    arcpy.Delete_management(temp_output)
+    if clean:
+        arcpy.Delete_management(temp_output)
     return output
