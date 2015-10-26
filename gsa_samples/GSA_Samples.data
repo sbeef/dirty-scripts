@@ -17,7 +17,8 @@ sample_list:
   artificial: 0.0007922951270432356
   basin: null
   counted: null
-  cs: '0'
+  cs: 0.0
+  cs_error: 0.0
   cultivated: 0.23443891888254317
   efficiency_calculated: null
   elevation: !!python/object:samples.StatsNugget {maximum: 2843.0, mean: 1619.4748612329038,
@@ -26,7 +27,8 @@ sample_list:
   harbin_file: null
   location: !!python/object:samples.Coordinate {latitude: '23.693801480099999', longitude: '100.817857281000000'}
   name: CH-115
-  pb: '4.23'
+  pb: 4.23
+  pb_error: 2.2
   rain: !!python/object:samples.StatsNugget {maximum: 1133.781005859375, mean: 1054.162333170573,
     minimum: 988.9400024414062}
   relief: !!python/object:samples.StatsNugget {maximum: 1307.0, mean: 883.9170182841069,
@@ -43,7 +45,8 @@ sample_list:
   artificial: 0.00663540456659782
   basin: null
   counted: null
-  cs: '0'
+  cs: 0.0
+  cs_error: 0.0
   cultivated: 0.3863108547364021
   efficiency_calculated: null
   elevation: !!python/object:samples.StatsNugget {maximum: 2940.0, mean: 1496.4767872078228,
@@ -52,7 +55,8 @@ sample_list:
   harbin_file: null
   location: !!python/object:samples.Coordinate {latitude: '22.969165133899999', longitude: '104.817886970999990'}
   name: CH-101
-  pb: '5.44'
+  pb: 5.44
+  pb_error: 3.7
   rain: !!python/object:samples.StatsNugget {maximum: 1678.2869873046875, mean: 1193.39472545277,
     minimum: 990.4459838867188}
   relief: !!python/object:samples.StatsNugget {maximum: 1785.0, mean: 528.885309836776,
@@ -69,7 +73,8 @@ sample_list:
   artificial: 0.008204713633594969
   basin: null
   counted: null
-  cs: '0'
+  cs: 0.0
+  cs_error: 0.0
   cultivated: 0.454130754221192
   efficiency_calculated: null
   elevation: !!python/object:samples.StatsNugget {maximum: 2940.0, mean: 1573.417068862889,
@@ -78,7 +83,8 @@ sample_list:
   harbin_file: null
   location: !!python/object:samples.Coordinate {latitude: '23.133643860900001', longitude: '104.507278088000010'}
   name: CH-103
-  pb: '0.33'
+  pb: 0.33
+  pb_error: 2.9
   rain: !!python/object:samples.StatsNugget {maximum: 1316.343994140625, mean: 1129.637444390191,
     minimum: 990.4459838867188}
   relief: !!python/object:samples.StatsNugget {maximum: 1227.0, mean: 403.4857367696242,
@@ -95,7 +101,8 @@ sample_list:
   artificial: 0.0037224538415723644
   basin: null
   counted: null
-  cs: '0'
+  cs: 0.0
+  cs_error: 0.0
   cultivated: 0.6403717751794614
   efficiency_calculated: null
   elevation: !!python/object:samples.StatsNugget {maximum: 2167.0, mean: 1745.6238186549788,
@@ -104,7 +111,8 @@ sample_list:
   harbin_file: null
   location: !!python/object:samples.Coordinate {latitude: '23.283865216399999', longitude: '103.723878622000000'}
   name: CH-105
-  pb: '2.82'
+  pb: 2.82
+  pb_error: 2.3
   rain: !!python/object:samples.StatsNugget {maximum: 1190.074951171875, mean: 1190.074951171875,
     minimum: 1190.074951171875}
   relief: !!python/object:samples.StatsNugget {maximum: 678.0, mean: 495.5586206896552,
@@ -121,7 +129,8 @@ sample_list:
   artificial: 0.00519672424398946
   basin: null
   counted: null
-  cs: '0'
+  cs: 0.0
+  cs_error: 0.0
   cultivated: 0.2500697169237193
   efficiency_calculated: null
   elevation: !!python/object:samples.StatsNugget {maximum: 3104.0, mean: 1657.726836301225,
@@ -130,7 +139,8 @@ sample_list:
   harbin_file: null
   location: !!python/object:samples.Coordinate {latitude: '22.852165143899999', longitude: '103.579668552000000'}
   name: CH-107
-  pb: '2.2'
+  pb: 2.2
+  pb_error: 2.9
   rain: !!python/object:samples.StatsNugget {maximum: 1453.31103515625, mean: 924.2362138464096,
     minimum: 793.5689697265625}
   relief: !!python/object:samples.StatsNugget {maximum: 2387.0, mean: 985.1246999490822,
@@ -147,7 +157,8 @@ sample_list:
   artificial: 0.00681193148840268
   basin: null
   counted: null
-  cs: '0'
+  cs: 0.0
+  cs_error: 0.0
   cultivated: 0.21833423054350543
   efficiency_calculated: null
   elevation: !!python/object:samples.StatsNugget {maximum: 3104.0, mean: 1765.9901469777574,
@@ -156,7 +167,8 @@ sample_list:
   harbin_file: null
   location: !!python/object:samples.Coordinate {latitude: '23.547234586500000', longitude: '102.073074707999990'}
   name: CH-109
-  pb: '3.28'
+  pb: 3.28
+  pb_error: 2.0
   rain: !!python/object:samples.StatsNugget {maximum: 1109.333984375, mean: 871.4167149135045,
     minimum: 793.5689697265625}
   relief: !!python/object:samples.StatsNugget {maximum: 2178.0, mean: 910.2977699572665,
@@ -173,7 +185,8 @@ sample_list:
   artificial: 0.008648239478227031
   basin: null
   counted: null
-  cs: '0'
+  cs: 0.0
+  cs_error: 0.0
   cultivated: 0.48276526879819326
   efficiency_calculated: null
   elevation: !!python/object:samples.StatsNugget {maximum: 2197.0, mean: 1418.4220114779428,
@@ -182,7 +195,8 @@ sample_list:
   harbin_file: null
   location: !!python/object:samples.Coordinate {latitude: '21.951876410299999', longitude: '100.421101495000000'}
   name: CH-127
-  pb: '-0.3'
+  pb: -0.3
+  pb_error: 4.8
   rain: !!python/object:samples.StatsNugget {maximum: 1298.52099609375, mean: 1298.52099609375,
     minimum: 1298.52099609375}
   relief: !!python/object:samples.StatsNugget {maximum: 1109.0, mean: 544.2709320695103,
@@ -199,7 +213,8 @@ sample_list:
   artificial: 0.0007261595771406967
   basin: null
   counted: null
-  cs: '0'
+  cs: 0.0
+  cs_error: 0.0
   cultivated: 0.22492042441740168
   efficiency_calculated: null
   elevation: !!python/object:samples.StatsNugget {maximum: 2843.0, mean: 1612.9739254513322,
@@ -208,7 +223,8 @@ sample_list:
   harbin_file: null
   location: !!python/object:samples.Coordinate {latitude: '23.556697565800000', longitude: '100.710194333000000'}
   name: CH-117
-  pb: '2.1'
+  pb: 2.1
+  pb_error: 2.0
   rain: !!python/object:samples.StatsNugget {maximum: 1141.27099609375, mean: 1077.5515991210937,
     minimum: 988.9400024414062}
   relief: !!python/object:samples.StatsNugget {maximum: 1307.0, mean: 862.3790911979663,
@@ -225,7 +241,8 @@ sample_list:
   artificial: 0.020775517789246634
   basin: null
   counted: null
-  cs: '0'
+  cs: 0.0
+  cs_error: 0.0
   cultivated: 0.20606142992596188
   efficiency_calculated: null
   elevation: !!python/object:samples.StatsNugget {maximum: 4179.0, mean: 2459.948234723076,
@@ -234,7 +251,8 @@ sample_list:
   harbin_file: null
   location: !!python/object:samples.Coordinate {latitude: '25.417621471400000', longitude: '100.006930682999990'}
   name: CH-155
-  pb: '-1.84'
+  pb: -1.84
+  pb_error: 1.8
   rain: !!python/object:samples.StatsNugget {maximum: 970.4000244140625, mean: 927.9797058105469,
     minimum: 875.0609741210938}
   relief: !!python/object:samples.StatsNugget {maximum: 2476.0, mean: 995.896241900648,
@@ -251,7 +269,8 @@ sample_list:
   artificial: null
   basin: null
   counted: null
-  cs: '0'
+  cs: 0.0
+  cs_error: 0.0
   cultivated: null
   efficiency_calculated: null
   elevation: !!python/object:samples.StatsNugget {maximum: null, mean: null, minimum: null}
@@ -259,7 +278,8 @@ sample_list:
   harbin_file: null
   location: !!python/object:samples.Coordinate {latitude: '24.433865871700000', longitude: '100.117549896000000'}
   name: CH-157
-  pb: '-7.23'
+  pb: -7.23
+  pb_error: 4.0
   rain: !!python/object:samples.StatsNugget {maximum: null, mean: null, minimum: null}
   relief: !!python/object:samples.StatsNugget {maximum: null, mean: null, minimum: null}
   sheded: null
@@ -273,7 +293,8 @@ sample_list:
   artificial: 0.006790744771044671
   basin: null
   counted: null
-  cs: '0'
+  cs: 0.0
+  cs_error: 0.0
   cultivated: 0.2185864496071343
   efficiency_calculated: null
   elevation: !!python/object:samples.StatsNugget {maximum: 3104.0, mean: 1764.3187693116731,
@@ -282,7 +303,8 @@ sample_list:
   harbin_file: null
   location: !!python/object:samples.Coordinate {latitude: '23.544823098799998', longitude: '102.085768935000000'}
   name: CH-111
-  pb: '-1.7'
+  pb: -1.7
+  pb_error: 2.2
   rain: !!python/object:samples.StatsNugget {maximum: 1109.333984375, mean: 871.4167149135045,
     minimum: 793.5689697265625}
   relief: !!python/object:samples.StatsNugget {maximum: 2178.0, mean: 911.3275127920707,
@@ -299,7 +321,8 @@ sample_list:
   artificial: 0.0006571352364974234
   basin: null
   counted: null
-  cs: '18110'
+  cs: 0
+  cs_error: 0
   cultivated: 0.31913027057072524
   efficiency_calculated: null
   elevation: !!python/object:samples.StatsNugget {maximum: 3104.0, mean: 1520.0911285737131,
@@ -308,7 +331,8 @@ sample_list:
   harbin_file: null
   location: !!python/object:samples.Coordinate {latitude: '23.351690854099999', longitude: '101.501619508000000'}
   name: CH-113
-  pb: '0'
+  pb: 3.3
+  pb_error: 1.8
   rain: !!python/object:samples.StatsNugget {maximum: 1184.9759521484375, mean: 1044.6168416341145,
     minimum: 969.5419921875}
   relief: !!python/object:samples.StatsNugget {maximum: 1675.0, mean: 964.1270956048935,
@@ -325,7 +349,8 @@ sample_list:
   artificial: 0.0008554010746728995
   basin: null
   counted: null
-  cs: '0'
+  cs: 0.0
+  cs_error: 0.0
   cultivated: 0.3138616281191159
   efficiency_calculated: null
   elevation: !!python/object:samples.StatsNugget {maximum: 2564.0, mean: 1389.5146148792153,
@@ -334,7 +359,8 @@ sample_list:
   harbin_file: null
   location: !!python/object:samples.Coordinate {latitude: '22.183872806499998', longitude: '99.222160777799999'}
   name: CH-129
-  pb: '2.45'
+  pb: 2.45
+  pb_error: 2.7
   rain: !!python/object:samples.StatsNugget {maximum: 1262.31298828125, mean: 1262.31298828125,
     minimum: 1262.31298828125}
   relief: !!python/object:samples.StatsNugget {maximum: 1602.0, mean: 1026.0510046367851,
@@ -351,7 +377,8 @@ sample_list:
   artificial: 0.0
   basin: null
   counted: null
-  cs: '0'
+  cs: 0.0
+  cs_error: 0.0
   cultivated: 0.4994718787912003
   efficiency_calculated: null
   elevation: !!python/object:samples.StatsNugget {maximum: 2210.0, mean: 1364.6130963537935,
@@ -360,7 +387,8 @@ sample_list:
   harbin_file: null
   location: !!python/object:samples.Coordinate {latitude: '22.337220173500000', longitude: '99.574969223200000'}
   name: CH-131
-  pb: '2.69'
+  pb: 2.69
+  pb_error: 2.7
   rain: !!python/object:samples.StatsNugget {maximum: 1458.446044921875, mean: 1397.9285278320312,
     minimum: 1337.4110107421875}
   relief: !!python/object:samples.StatsNugget {maximum: 1134.0, mean: 682.4073660714286,
@@ -377,7 +405,8 @@ sample_list:
   artificial: 0.001229000731410932
   basin: null
   counted: null
-  cs: '0'
+  cs: 0.0
+  cs_error: 0.0
   cultivated: 0.36701739836555575
   efficiency_calculated: null
   elevation: !!python/object:samples.StatsNugget {maximum: 2448.0, mean: 1630.2911275509687,
@@ -386,7 +415,8 @@ sample_list:
   harbin_file: null
   location: !!python/object:samples.Coordinate {latitude: '23.365246490499999', longitude: '99.446900029000005'}
   name: CH-133
-  pb: '-1.8'
+  pb: -1.8
+  pb_error: 2.2
   rain: !!python/object:samples.StatsNugget {maximum: 1302.3759765625, mean: 1295.9234619140625,
     minimum: 1289.470947265625}
   relief: !!python/object:samples.StatsNugget {maximum: 1268.0, mean: 867.1709577754892,
@@ -403,7 +433,8 @@ sample_list:
   artificial: null
   basin: null
   counted: null
-  cs: '0'
+  cs: 0.0
+  cs_error: 0.0
   cultivated: null
   efficiency_calculated: null
   elevation: !!python/object:samples.StatsNugget {maximum: null, mean: null, minimum: null}
@@ -411,7 +442,8 @@ sample_list:
   harbin_file: null
   location: !!python/object:samples.Coordinate {latitude: '23.530940051200002', longitude: '98.987846374499995'}
   name: CH-139
-  pb: '0.573'
+  pb: 0.573
+  pb_error: 1.7
   rain: !!python/object:samples.StatsNugget {maximum: null, mean: null, minimum: null}
   relief: !!python/object:samples.StatsNugget {maximum: null, mean: null, minimum: null}
   sheded: null
@@ -425,7 +457,8 @@ sample_list:
   artificial: 0.01001154526123643
   basin: null
   counted: null
-  cs: '0'
+  cs: 0.0
+  cs_error: 0.0
   cultivated: 0.27150300637692176
   efficiency_calculated: null
   elevation: !!python/object:samples.StatsNugget {maximum: 3727.0, mean: 1647.900543642854,
@@ -434,7 +467,8 @@ sample_list:
   harbin_file: null
   location: !!python/object:samples.Coordinate {latitude: '24.051911862800001', longitude: '97.975614736899999'}
   name: CH-141
-  pb: '-7.6'
+  pb: -7.6
+  pb_error: 3.6
   rain: !!python/object:samples.StatsNugget {maximum: 1217.2540283203125, mean: 1028.5733337402344,
     minimum: 789.6510009765625}
   relief: !!python/object:samples.StatsNugget {maximum: 1945.0, mean: 932.2219049561493,
@@ -451,7 +485,8 @@ sample_list:
   artificial: 0.00909723129336934
   basin: null
   counted: null
-  cs: '0'
+  cs: 0.0
+  cs_error: 0.0
   cultivated: 0.18785338597412568
   efficiency_calculated: null
   elevation: !!python/object:samples.StatsNugget {maximum: 3685.0, mean: 1717.0308103582113,
@@ -460,7 +495,8 @@ sample_list:
   harbin_file: null
   location: !!python/object:samples.Coordinate {latitude: '24.487369524799998', longitude: '97.726185971099994'}
   name: CH-143
-  pb: '-3.48'
+  pb: -3.48
+  pb_error: 3.4
   rain: !!python/object:samples.StatsNugget {maximum: 1174.4639892578125, mean: 1005.3911209106445,
     minimum: 841.7030029296875}
   relief: !!python/object:samples.StatsNugget {maximum: 1909.0, mean: 991.4518441093027,
@@ -477,7 +513,8 @@ sample_list:
   artificial: 0.006739321657060496
   basin: null
   counted: null
-  cs: '0'
+  cs: 0.0
+  cs_error: 0.0
   cultivated: 0.37060813198434867
   efficiency_calculated: null
   elevation: !!python/object:samples.StatsNugget {maximum: 3468.0, mean: 1642.3799505524066,
@@ -486,7 +523,8 @@ sample_list:
   harbin_file: null
   location: !!python/object:samples.Coordinate {latitude: '23.677143798600000', longitude: '99.237052152299995'}
   name: CH-135
-  pb: '0.858'
+  pb: 0.858
+  pb_error: 2.6
   rain: !!python/object:samples.StatsNugget {maximum: 1202.928955078125, mean: 1096.7927856445312,
     minimum: 1018.3140258789062}
   relief: !!python/object:samples.StatsNugget {maximum: 2219.0, mean: 1182.8797208538588,

@@ -1,4 +1,4 @@
-import time, yaml, os, sys
+import time, yaml, os, sys, csv
 
 if sys.platform != "cygwin":
     import arcpy
@@ -27,7 +27,9 @@ class Sample:
         self.harbin_file = None # a string represninting the address of the output file from harbin
         #isotope data
         self.cs = None # a float representing the amount of Cs in Bq/kg
+        self.cs_error = None
         self.pb = None # a float representing the amount of Pb in Bq/kg
+        self.pb_error = None
         #spatial satistics
         # each statistic is a StatsNugget Object
         self.elevation = StatsNugget()
@@ -114,6 +116,16 @@ class Sample:
     def set_relief(self, raster):
         self.get_stats("RELIEF", raster)
 
+
+# gets valyues from obj like dict, but allows for values of objects that are values of objects
+# SO get_value(sample, name) --> sample.name
+# AND get_value(sample, ('relief', 'mean')) --> sample.relief.mean
+def get_value(obj, field):
+    if isinstance(field, basestring):
+        return obj.__dict__[field]
+    else:
+        return get_value(obj.__dict__[field[0]], field[1])
+
 class SampleCollection: # a collection of samples to be treated similarly
     def __init__(self):
         self.name = None # the name of the collection
@@ -134,6 +146,19 @@ class SampleCollection: # a collection of samples to be treated similarly
     # this function just returns the sample list, so that you can iterate
     def __iter__(self):
         return iter(self.sample_list)
+
+    # fields is a list of touples which are (name of output column, name of object field)
+    #[('Name', 'name'), ('mean_relief', ('relief', 'mean')
+    def create_csv(self, fields, output):
+        of = open(output, 'w')
+        writer = csv.DictWriter(of, fieldnames = [field[0] for field in fields])
+        writer.writeheader()
+        for sample in self.sample_list:
+            sdict = {}
+            for field in fields:
+                sdict[field[0]] = get_value(sample, field[1])
+            writer.writerow(sdict)
+        of.close()
 
     def add(self, sample):
         self.sample_list.append(sample)
