@@ -52,7 +52,7 @@ class Sample:
         if not self.flow_snapped:
             print "this point has not yet been snapped to flow direction"
             return None
-        point_info = arcpy.point(self.location.longitude, self.location.latitude)
+        point_info = arcpy.Point(self.location.longitude, self.location.latitude)
         point = arcpy.PointGeometry(point_info, self.spatial_reference)
         arcpy.CheckOutExtension("Spatial")
         watershed_raster = arcpy.sa.Watershed(flow_dir, point)
@@ -74,6 +74,7 @@ class Sample:
         else:
             outpath = output
         # clip raster to watershed
+        print "attempting arcpy.Clip_management(%s, out_raster=%s, in_template_dataset=%s, clipping_geometry=\"ClippingGeometry\")" % (raster, output, self.watershed)
         clipped = arcpy.Raster(arcpy.Clip_management(raster, out_raster=outpath, in_template_dataset=self.watershed, clipping_geometry="ClippingGeometry"))
         # extract statistics
         stats = StatsNugget()
@@ -149,11 +150,12 @@ class SampleCollection: # a collection of samples to be treated similarly
 
     # fields is a list of touples which are (name of output column, name of object field)
     #[('Name', 'name'), ('mean_relief', ('relief', 'mean')
-    def create_csv(self, fields, output):
+    def create_csv(self, fields, output, ffunction=None):
         of = open(output, 'w')
         writer = csv.DictWriter(of, fieldnames = [field[0] for field in fields])
         writer.writeheader()
-        for sample in self.sample_list:
+        out_samples = filter(ffunction, self.sample_list)
+        for sample in out_samples:
             sdict = {}
             for field in fields:
                 sdict[field[0]] = get_value(sample, field[1])
