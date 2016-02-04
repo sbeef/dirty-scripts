@@ -1,7 +1,48 @@
 import time, yaml, os, sys, csv
 
-if sys.platform != "cygwin":
+try:
     import arcpy
+except ImportError:
+    print "no arcpy module, so certain functions will not work"
+try:
+    from scipy import stats
+except ImportError:
+    print "no scipy module so certain functions will not work"
+
+
+PLOT_STRING = (
+"\\documentclass{standalone}\n\n" +
+"\\usepackage{amsmath}\n" +
+"\\usepackage{pgfplots}\n" +
+"\\pgfplotsset{compat=%(version)s}\n\n" +
+"\\begin{document}\n\n" +
+"\\pgfplotstableread[col sep=%(seperator)s] {%(data_file)s}\data\n\n" +
+"\\begin{tikzpicture}\n" +
+"\\begin{%(axis)s}[\n" +
+"    name=s,\n" +
+"    title=%(title)s,\n" +
+"    axis lines=left,\n" +
+"    xlabel=%(xlabel)s,\n" +
+"    ylabel=%(ylabel)s,\n" +
+"    ]\n" +
+"\\addplot+[\n" +
+"    only marks,\n" +
+"    mark options={\n" +
+"        color=black,\n" +
+"        },\n" +
+"    mark size=1pt,\n" +
+"    ] table[\n" +
+"        x=%(xfield)s,\n" +
+"        y=%(yfield)s,\n" +
+"    ] {\\data};\n" +
+"\\end{axis}\n" +
+"%(rfilter)s\\draw (s.right of north east) node[above right] {$r^2=%(rr).3f$};\n" +
+"%(pfilter)s\\draw (s.right of north east) node[below right] {$p$-value$=%(pvalue).3f$};\n" +
+"\\end{tikzpicture}\n\n" +
+"\\end{document}\n" )
+
+
+
 
 class Coordinate:
     def __init__(self):
@@ -62,6 +103,11 @@ class Sample:
         self.watershed = shp_path
         self.sheded = True
         return shp_path
+
+    def get_area(self):
+        meter_file = "%s_UTM.shp" % self.watershed[:-4]
+        sc = arcpy.da.SearchCursor(meter_file, "SHAPE@AREA")
+        self.area = sc.next()[0]
 
     def get_statistics(self, raster_file, output=None):
         if not self.sheded:
@@ -262,13 +308,17 @@ def link_harbin_files(collection, root_dir, copy=True):
 
 
 def sample_to_PointGeometry(sample):
-    pt = arcpy.Point(sample.longitude, sample.latitude)
-    return arcpy.PointGeometry(pt)
+    pt = arcpy.Point(sample.location.longitude, sample.location.latitude)
+    return (arcpy.PointGeometry(pt), sample.name)
 
 
 def create_pointfile_from_list(sample_list, outfile):
+    arcpy.CreateFeatureclass_management(os.path.split(outfile)[0], os.path.split(outfile)[1], "POINT")
+    arcpy.AddField_management(outfile, "name", "TEXT")
+    cursor = arcpy.da.InsertCursor(outfile, ("SHAPE@", "name"))
     point_geoms = [sample_to_PointGeometry(sample) for sample in sample_list]
-    arcpyCopyFeatures+management(point_geoms, outfile)
+    for point in point_geoms:
+        cursor.insertRow(point)
 
 #temp_output needs to be the default geodatabase
 # NOT GENERIC, SPECIFIC TO GLC!!
@@ -294,3 +344,63 @@ def get_class_area(raster, cids, clip, nodata=255, clean=True):
     if clean:
         arcpy.Delete_management(temp_output)
     return output
+
+def make_dat_file(columns, l1, l2, output):
+        of = open(output, 'w')
+        outl = "%s\t%s\n" % (columns[0], columns[1])
+        of.write(outl)
+        for i in range(0, len(l1)):
+            outl = "%s\t%s\n" % (l1[i], l2[i])
+            of.write(outl)
+        of.close()
+
+
+
+def plot_dat_file(x, y, data, out_tex, title="", sep="comma", axis="axis", rr=None, pvalue=None, version='1.12'):
+    output_file = open(out_tex, 'w')
+    inputs = {
+        'title':title,
+        'version':version,
+        'seperator':sep,
+        'data_file':data,
+        'axis':axis,
+        'xlabel':x[0],
+        'ylabel':y[0],
+        'xfield':x[1],
+        'yfield':y[1],
+        'rfilter':'%',
+        'pfilter':'%',
+        'rr':0.0,
+        'pvalue':0.0,}
+    if rr is not None:
+        inputs['rfilter'] = ''
+        inputs['rr'] = rr
+    if pvalue is not None:
+        inputs['pfilter'] = ''
+        inputs['pvalue'] = pvalue
+    output = PLOT_STRING % inputs
+    output_file.write(output)
+    output_file.close()
+
+# x and y are touples containing the list of data to graph,
+#   a string represnting the axis label of the graph
+#   and another string representing a nice label for the tex file
+def plot(x, y, out_name, title="", axis="axis", rr=True, pvalue=True):
+    x_vals = x[0]
+    y_vals = y[0]
+    x_keys = x[1:]
+    y_keys = y[1:]
+    slope, intercept, r_value, p_value, std_rr = stats.linregress(x_vals, y_vals)
+    if rr:
+        rr = r_value**2
+    else:
+        rr = None
+    if pvalue:
+        pvalue = p_value
+    else:
+        pvalue = None
+    dat_file = "%s.dat" % out_name
+    tex_file = "%s.tex" % out_name
+    make_dat_file((x_keys[1], y_keys[1]), x_vals, y_vals, dat_file)
+    dat_name = os.path.split(dat_file)[1]
+    plot_dat_file(x_keys, y_keys, dat_name, tex_file, title=title, sep='space', axis=axis, rr=rr, pvalue=pvalue)
