@@ -58,28 +58,12 @@ class StatsNugget:
 class Sample:
     def __init__(self, name):
         self.name = name # a string
-        self.location = Coordinate() #a coordinate object
-        self.area = None # the upstream area of the sample
-        self.basin = None # the name of the river basin
+        self.latitude = None
+        self.longitude = None
+        self.isotopes = None
+        self.files = None
+        self.geography = None
         self.spatial_reference = None
-        #files
-        self.watershed = None # a string representing the adress of the shapefile of the watershed
-        self.angle_file = None # a string representing the adress of the output file from angle
-        self.harbin_file = None # a string represninting the address of the output file from harbin
-        #isotope data
-        self.cs = None # a float representing the amount of Cs in Bq/kg
-        self.cs_error = None
-        self.pb = None # a float representing the amount of Pb in Bq/kg
-        self.pb_error = None
-        #spatial satistics
-        # each statistic is a StatsNugget Object
-        self.elevation = StatsNugget()
-        self.slope = StatsNugget()
-        self.rain = StatsNugget()
-        self.relief = StatsNugget()
-        # land use - each is a float representing the percentage of each type
-        self.cultivated = None
-        self.artificial = None
         #administrative stuff
         self.flow_snapped = None #snapped to a point in the flow accumulation
         self.sheded = None
@@ -93,21 +77,21 @@ class Sample:
         if not self.flow_snapped:
             print "this point has not yet been snapped to flow direction"
             return None
-        point_info = arcpy.Point(self.location.longitude, self.location.latitude)
+        point_info = arcpy.Point(self.longitude, self.latitude)
         point = arcpy.PointGeometry(point_info, self.spatial_reference)
         arcpy.CheckOutExtension("Spatial")
         watershed_raster = arcpy.sa.Watershed(flow_dir, point)
         shp_name = self.name.replace(" ", "_")
         shp_path = os.path.join(shp_dir, shp_name)
         arcpy.RasterToPolygon_conversion(watershed_raster, shp_path)
-        self.watershed = shp_path
+        self.files['watershed'] = shp_path
         self.sheded = True
         return shp_path
 
     def get_area(self):
         meter_file = "%s_UTM.shp" % self.watershed[:-4]
         sc = arcpy.da.SearchCursor(meter_file, "SHAPE@AREA")
-        self.area = sc.next()[0]
+        self.geography['area'] = sc.next()[0]
 
     def get_statistics(self, raster_file, output=None):
         if not self.sheded:
@@ -120,48 +104,35 @@ class Sample:
         else:
             outpath = output
         # clip raster to watershed
-        print "attempting arcpy.Clip_management(%s, out_raster=%s, in_template_dataset=%s, clipping_geometry=\"ClippingGeometry\")" % (raster, output, self.watershed)
-        clipped = arcpy.Raster(arcpy.Clip_management(raster, out_raster=outpath, in_template_dataset=self.watershed, clipping_geometry="ClippingGeometry"))
+        print ("attempting arcpy.Clip_management(%s, out_raster=%s,
+               in_template_dataset=%s, clipping_geometry=\"ClippingGeometry\")"
+               % (raster, output, self.watershed))
+        clipped = arcpy.Raster(
+                    arcpy.Clip_management(raster, out_raster=outpath,
+                                          in_template_dataset=self.watershed,
+                                          clipping_geometry="ClippingGeometry"))
         # extract statistics
-        stats = StatsNugget()
-        stats.maximum = clipped.maximum
-        stats.minimum = clipped.minimum
-        stats.mean = clipped.mean
+        stats = {}
+        stats['maximum'] = clipped.maximum
+        stats['minimum'] = clipped.minimum
+        stats['mean'] = clipped.mean
         if output is None:
             arcpy.Delete_management(outpath)
         return stats
 
+    def set_stats(self, stats, name):
+        maxs = "max %s" % name
+        mins = "min %s" % name
+        means = "mean %s" % name
+        self.geography[maxs] = stats["maximum"]
+        self.geography[mins] = stats["minimum"]
+        self.geography[means] = stats["mean"]
+
     def get_stats(self, attribute, raster):
-        if attribute.upper() == "ELEVATION":
-            stats = self.get_statistics(raster)
-            if stats is not None:
-                self.elevation = stats
-        elif attribute.upper() == "SLOPE":
-            stats = self.get_statistics(raster)
-            if stats is not None:
-                self.slope = stats
-        elif attribute.upper() == "RAIN":
-            stats = self.get_statistics(raster)
-            if stats is not None:
-                self.rain = stats
-        elif attribute.upper() == "RELIEF":
-            stats = self.get_statistics(raster)
-            if stats is not None:
-                self.relief = stats
-        else:
-            print "sorry, no attribute called %s" % attribute
+        stats = self.get_statistics(raster)
+        if stats is not None:
+            self.set_stats(stats, attribute)
 
-    def set_elevation(self, raster):
-        self.get_stats("ELEVATION", raster)
-
-    def set_slope(self, raster):
-        self.get_stats("SLOPE", raster)
-
-    def set_rain(self, raster):
-        self.get_stats("RAIN", raster)
-
-    def set_relief(self, raster):
-        self.get_stats("RELIEF", raster)
 
 
 # gets valyues from obj like dict, but allows for values of objects that are values of objects
