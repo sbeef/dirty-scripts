@@ -63,6 +63,7 @@ class Sample:
         self.isotopes = None
         self.files = None
         self.geography = None
+        self.administrative = None # for stuff like resample, in/over, station number
         self.spatial_reference = None
         #administrative stuff
         self.flow_snapped = None #snapped to a point in the flow accumulation
@@ -104,8 +105,8 @@ class Sample:
         else:
             outpath = output
         # clip raster to watershed
-        print ("attempting arcpy.Clip_management(%s, out_raster=%s,
-               in_template_dataset=%s, clipping_geometry=\"ClippingGeometry\")"
+        print ("attempting arcpy.Clip_management(%s, out_raster=%s, ",
+               "in_template_dataset=%s, clipping_geometry=\"ClippingGeometry\")"
                % (raster, output, self.watershed))
         clipped = arcpy.Raster(
                     arcpy.Clip_management(raster, out_raster=outpath,
