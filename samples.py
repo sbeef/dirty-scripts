@@ -60,10 +60,10 @@ class Sample:
         self.name = name # a string
         self.latitude = None
         self.longitude = None
-        self.isotopes = None
-        self.files = None
-        self.geography = None
-        self.administrative = None # for stuff like resample, in/over, station number
+        self.isotopes = {}
+        self.files = {}
+        self.geography = {}
+        self.administrative = {} # for stuff like resample, in/over, station number
         self.spatial_reference = None
         #administrative stuff
         self.flow_snapped = None #snapped to a point in the flow accumulation
@@ -221,7 +221,8 @@ class SampleCollection: # a collection of samples to be treated similarly
 
     def save(self):
         if self.file_name == None:
-            self.file_name = self.name.replace(" ", "_")
+            self.file_name - self.name
+            #self.file_name = self.name.replace(" ", "_")
         outfile = "%s.data" % self.file_name
         outpath = os.path.join(self.containing_folder, outfile)
         output = open(outpath, 'w')
@@ -235,6 +236,8 @@ class SampleCollection: # a collection of samples to be treated similarly
         archive.close()
 
 def load(file_name):
+    if os.path.isdir(file_name):
+        file_name = "%s/%s.data" % (file_name, file_name)
     input_file = open(file_name, 'r')
     sample_list = yaml.load(input_file)
     input_file.close()
