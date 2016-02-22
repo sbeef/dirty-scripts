@@ -221,7 +221,7 @@ class SampleCollection: # a collection of samples to be treated similarly
 
     def save(self):
         if self.file_name == None:
-            self.file_name - self.name
+            self.file_name = self.name
             #self.file_name = self.name.replace(" ", "_")
         outfile = "%s.data" % self.file_name
         outpath = os.path.join(self.containing_folder, outfile)
